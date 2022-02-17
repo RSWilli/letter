@@ -1,0 +1,88 @@
+\documentclass[
+    foldmarks=true,      % print foldmarks
+    foldmarks=BTm,       % show foldmarks top, middle, bottom
+    $if(return-address)$
+    fromalign=right,     % letter head on the right
+    $else$
+    fromalign=false,
+    $endif$
+    $if(phone)$
+    fromphone,           % show phone number
+    $endif$
+    $if(email)$
+    fromemail,           % show email
+    $endif$
+    fromlogo,            % show logo in letter head
+    version=last         % latest version of KOMA letter
+]{scrlttr2}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{parskip}
+
+\usepackage{graphics}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage[right]{eurosym}
+
+\makeatletter
+    \setlength{\@tempskipa}{-1.2cm}%
+    \@addtoplength{toaddrheight}{\@tempskipa}
+\makeatother
+
+\setlength{\oddsidemargin}{\useplength{toaddrhpos}}
+\addtolength{\oddsidemargin}{-1in}
+\setlength{\textwidth}{\useplength{firstheadwidth}}
+
+\begin{document}
+    $if(return-address)$
+    \setkomavar{fromname}{$author$}
+    $endif$
+    % \renewcommand*{\raggedsignature}{\raggedright}
+    $if(return-address)$
+    \setkomavar{fromaddress}{%
+        $for(return-address)$
+        $return-address$$sep$\\
+        $endfor$
+    }
+    $endif$
+    $if(phone)$
+        \setkomavar{fromphone}{$phone$}
+    $endif$
+    $if(email)$
+        \setkomavar{fromemail}{$email$}
+    $endif$
+    \setkomavar{signature}{$author$}
+
+    \setkomavar{date}{$date$}
+    \setkomavar{place}{$place$}
+
+    \setkomavar{subject}{$subject$}
+
+    \begin{letter}{%
+        $if(address)$
+            $for(address)$
+                $address$$sep$\\
+            $endfor$
+        $else$
+        ~
+        $endif$
+    }
+        \opening{$opening$}
+
+        $body$
+
+        \closing{$closing$}
+
+        \ps $postskriptum$
+
+        $if(encludes)$
+            \setkomavar*{enclseparator}{Anlage}
+            \encl{$encludes$}
+        $endif$
+    \end{letter}
+\end{document}
