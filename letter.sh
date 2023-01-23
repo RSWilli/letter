@@ -19,6 +19,6 @@ trap cleanup EXIT
 while true; do
     echo "compiling $1"
     pandoc "$1" -s -o "$1.pdf" --template="./letter-template.tex"
-    echo "watching $1 for changes"
-    inotifywait -qre close_write "$1"
+    echo "watching $1 and letter-template.tex for changes"
+    inotifywait -qre close_write "$1" letter-template.tex
 done
