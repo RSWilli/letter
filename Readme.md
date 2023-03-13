@@ -1,7 +1,14 @@
-# Latex letter
+# Latex letter and contract
 
-you need pandoc and latex installed on your system
+you need pandoc, latex and inotifytools installed on your system
 
-just call the letter.sh with the markdown file you want to compile as an argument
+```bash
+# use letter template:
+./watch.sh letter-example.md letter-template.tex
+
+# use contract template:
+./watch.sh kaufvertrag-kueche.md contract-template.tex
+```
+
 
 Thanks to https://github.com/benedictdudel/pandoc-letter-din5008 for initial setup
