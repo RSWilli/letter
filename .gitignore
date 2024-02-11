@@ -1,3 +1,4 @@
+.direnv
 *.md
 !letter-example.md
 !contract-example.md

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # watch a .md file and compile it to a pdf using pandoc using a template
 #  - requires inotify-tools
